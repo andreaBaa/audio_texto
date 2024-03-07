@@ -7,20 +7,23 @@ from PIL import Image
 import time
 import glob
 
-
-
 from gtts import gTTS
 from googletrans import Translator
 
-
 st.title("Traductor de voz")
+
+# Estilos CSS para cambiar el color de fondo
+st.markdown("""
+    <style>
+        body {
+            background-color: blue;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
 image = Image.open('gatos.jpeg')
 
 st.image(image)
-
-
-#st.write(")
 
 stt_button = Button(label=" Inicio ", width=200)
 
