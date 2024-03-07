@@ -7,20 +7,29 @@ from PIL import Image
 import time
 import glob
 
-
-
 from gtts import gTTS
 from googletrans import Translator
 
+st.markdown(
+    """
+    <style>
+    body {
+        background-color: blue;
+    }
+    .stButton>button {
+        background-color: red;
+        color: white;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 st.title("Traductor de voz")
 
 image = Image.open('gatos.jpeg')
 
 st.image(image)
-
-
-#st.write(")
 
 stt_button = Button(label=" Inicio ", width=200)
 
@@ -176,3 +185,4 @@ if result:
                     print("Deleted ", f)
 
     remove_files(7)
+
