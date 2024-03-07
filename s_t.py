@@ -7,8 +7,11 @@ from PIL import Image
 import time
 import glob
 
+
+
 from gtts import gTTS
 from googletrans import Translator
+
 
 st.title("Traductor de voz")
 
@@ -16,24 +19,10 @@ image = Image.open('gatos.jpeg')
 
 st.image(image)
 
-# Estilos CSS para cambiar el color de fondo y los botones
-st.markdown("""
-    <style>
-        body {
-            background-color: blue;
-        }
-        .css-12l55ci {
-            background-color: red;
-            color: white;
-        }
-        .css-1sb41rj {
-            background-color: darkred !important;
-            color: white !important;
-        }
-    </style>
-""", unsafe_allow_html=True)
 
-stt_button = Button(label=" Inicio ", width=200, css_classes=['css-12l55ci'])
+#st.write(")
+
+stt_button = Button(label=" Inicio ", width=200)
 
 st.subheader("Toca el botón y di en voz alta lo que quieras que traduzca:")
 
@@ -164,7 +153,7 @@ if result:
     
     display_output_text = st.checkbox("Mostrar el texto")
     
-    if st.button("CONVERTIR", class='css-1sb41rj'):
+    if st.button("CONVERTIR"):
         result, output_text = text_to_speech(input_language, output_language, text, tld)
         audio_file = open(f"temp/{result}.mp3", "rb")
         audio_bytes = audio_file.read()
@@ -180,5 +169,11 @@ if result:
         mp3_files = glob.glob("temp/*mp3")
         if len(mp3_files) != 0:
             now = time.time()
-           
+            n_days = n * 86400
+            for f in mp3_files:
+                if os.stat(f).st_mtime < now - n_days:
+                    os.remove(f)
+                    print("Deleted ", f)
+
+    remove_files(7)
 
