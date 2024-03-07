@@ -17,12 +17,12 @@ st.title("Interfaces Multimodales")
 st.subheader("TRADUCTOR")
 
 
-image = Image.open('traductor.jpg')
+image = Image.open('gatofrances.jpg')
 
 st.image(image)
 
 
-st.write("Toca el Botón y habla lo que quires traducir")
+st.write("Toca el botón y di en voz alta lo que quieras que traduzca:")
 
 stt_button = Button(label=" Inicio ", width=200)
 
