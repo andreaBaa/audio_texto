@@ -80,6 +80,10 @@ if result:
         input_language = "zh-cn"
     elif in_lang == "Japonés":
         input_language = "ja"
+    elif out_lang == "Alemán":
+        output_language = "de"
+    elif out_lang == "Francés":
+        output_language = "fr"
     
     out_lang = st.selectbox(
         "Selecciona el lenguaje de salida",
@@ -97,6 +101,10 @@ if result:
         output_language = "zh-cn"
     elif out_lang == "Japonés":
         output_language = "ja"
+    elif out_lang == "Alemán":
+        output_language = "de"
+    elif out_lang == "Francés":
+        output_language = "fr"
     
     english_accent = st.selectbox(
         "Selecciona el acento",
@@ -116,7 +124,6 @@ if result:
         tld = "com"
     elif english_accent == "Español":
         tld = "com.mx"
-    
     elif english_accent == "Reino Unido":
         tld = "co.uk"
     elif english_accent == "Estados Unidos":
@@ -129,6 +136,7 @@ if result:
         tld = "ie"
     elif english_accent == "Sudáfrica":
         tld = "co.za"
+        
     
     
     def text_to_speech(input_language, output_language, text, tld):
@@ -145,7 +153,7 @@ if result:
     
     display_output_text = st.checkbox("Mostrar el texto")
     
-    if st.button("convertir"):
+    if st.button("CONVERTIR"):
         result, output_text = text_to_speech(input_language, output_language, text, tld)
         audio_file = open(f"temp/{result}.mp3", "rb")
         audio_bytes = audio_file.read()
