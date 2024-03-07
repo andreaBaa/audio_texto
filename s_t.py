@@ -33,7 +33,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-stt_button = Button(label=" Inicio ", width=200)
+stt_button = Button(label=" Inicio ", width=200, css_classes=['css-12l55ci'])
 
 st.subheader("Toca el botón y di en voz alta lo que quieras que traduzca:")
 
@@ -164,7 +164,7 @@ if result:
     
     display_output_text = st.checkbox("Mostrar el texto")
     
-    if st.button("CONVERTIR"):
+    if st.button("CONVERTIR", class='css-1sb41rj'):
         result, output_text = text_to_speech(input_language, output_language, text, tld)
         audio_file = open(f"temp/{result}.mp3", "rb")
         audio_bytes = audio_file.read()
@@ -180,11 +180,5 @@ if result:
         mp3_files = glob.glob("temp/*mp3")
         if len(mp3_files) != 0:
             now = time.time()
-            n_days = n * 86400
-            for f in mp3_files:
-                if os.stat(f).st_mtime < now - n_days:
-                    os.remove(f)
-                    print("Deleted ", f)
-
-    remove_files(7)
+           
 
