@@ -10,16 +10,19 @@ import glob
 from gtts import gTTS
 from googletrans import Translator
 
-st.title("Traductor de voz")
-
-# Estilos CSS para cambiar el color de fondo
-st.markdown("""
+# Cambiar el color de fondo a azul
+st.markdown(
+    """
     <style>
-        body {
-            background-color: blue;
-        }
+    body {
+        background-color: blue;
+    }
     </style>
-""", unsafe_allow_html=True)
+    """,
+    unsafe_allow_html=True
+)
+
+st.title("Traductor de voz")
 
 image = Image.open('gatos.jpeg')
 
