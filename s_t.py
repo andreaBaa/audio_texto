@@ -17,7 +17,7 @@ st.title("Interfaces Multimodales")
 st.subheader("TRADUCTOR")
 
 
-image = Image.open('gatofrances.jpg')
+image = Image.open('gatos.jpge')
 
 st.image(image)
 
