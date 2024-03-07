@@ -10,17 +10,31 @@ import glob
 from gtts import gTTS
 from googletrans import Translator
 
+# CSS para cambiar el color de fondo de la página a azul
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-color: #ADD8E6;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 st.title("Traductor de voz")
 
 image = Image.open('gatos.jpeg')
 
 st.image(image)
 
+# CSS para cambiar el color del botón a rojo
 st.markdown(
     """
     <style>
-    body {
-        background-color: #f0f0f0; /* Cambiar el color de fondo de la página */
+    .stButton>button {
+        background-color: red !important;
+        color: white !important;
     }
     </style>
     """,
@@ -35,7 +49,7 @@ stt_button.js_on_event("button_click", CustomJS(code="""
     var recognition = new webkitSpeechRecognition();
     recognition.continuous = true;
     recognition.interimResults = true;
-
+ 
     recognition.onresult = function (e) {
         var value = "";
         for (var i = e.resultIndex; i < e.results.length; ++i) {
@@ -49,28 +63,6 @@ stt_button.js_on_event("button_click", CustomJS(code="""
     }
     recognition.start();
     """))
-
-st.markdown(
-    """
-    <style>
-    .bk-button {
-        background-color: #4CAF50; /* Cambiar el color de fondo del botón */
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        font-size: 16px;
-        margin: 4px 2px;
-        transition-duration: 0.4s;
-        cursor: pointer;
-    }
-    .bk-button:hover {
-        background-color: #45a049; /* Cambiar el color de fondo cuando el mouse está sobre el botón */
-        color: white;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
 
 result = streamlit_bokeh_events(
     stt_button,
@@ -89,7 +81,7 @@ if result:
         pass
     st.title("Texto a Audio")
     translator = Translator()
-
+    
     text = str(result.get("GET_TEXT"))
     in_lang = st.selectbox(
         "Selecciona el lenguaje de Entrada",
@@ -111,7 +103,7 @@ if result:
         output_language = "de"
     elif out_lang == "Francés":
         output_language = "fr"
-
+    
     out_lang = st.selectbox(
         "Selecciona el lenguaje de salida",
         ("Inglés", "Español", "Bengali", "Coreano", "Mandarín", "Japonés"),
@@ -132,7 +124,7 @@ if result:
         output_language = "de"
     elif out_lang == "Francés":
         output_language = "fr"
-
+    
     english_accent = st.selectbox(
         "Selecciona el acento",
         (
@@ -146,7 +138,7 @@ if result:
             "Sudáfrica",
         ),
     )
-
+    
     if english_accent == "Defecto":
         tld = "com"
     elif english_accent == "Español":
@@ -163,42 +155,15 @@ if result:
         tld = "ie"
     elif english_accent == "Sudáfrica":
         tld = "co.za"
-
+        
+    
+    
     def text_to_speech(input_language, output_language, text, tld):
         translation = translator.translate(text, src=input_language, dest=output_language)
         trans_text = translation.text
         tts = gTTS(trans_text, lang=output_language, tld=tld, slow=False)
-        try:
-            my_file_name = text[0:20]
-        except:
-            my_file_name = "audio"
-        tts.save(f"temp/{my_file_name}.mp3")
-        return my_file_name, trans_text
+        try
 
-    display_output_text = st.checkbox("Mostrar el texto")
-
-    if st.button("CONVERTIR"):
-        result, output_text = text_to_speech(input_language, output_language, text, tld)
-        audio_file = open(f"temp/{result}.mp3", "rb")
-        audio_bytes = audio_file.read()
-        st.markdown(f"## Tú audio:")
-        st.audio(audio_bytes, format="audio/mp3", start_time=0)
-
-        if display_output_text:
-            st.markdown(f"## Texto de salida:")
-            st.write(f" {output_text}")
-
-    def remove_files(n):
-        mp3_files = glob.glob("temp/*mp3")
-        if len(mp3_files) != 0:
-            now = time.time()
-            n_days = n * 86400
-            for f in mp3_files:
-                if os.stat(f).st_mtime < now - n_days:
-                    os.remove(f)
-                    print("Deleted ", f)
-
-    remove_files(7)
 
 
         
