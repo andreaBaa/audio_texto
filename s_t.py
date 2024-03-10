@@ -21,7 +21,7 @@ image = Image.open('gatos.jpeg')
 width, height = image.size
 
 # Mostrar la imagen en el centro de la página
-st.image(image, use_column_width=True, caption='Gatos')
+st.image(image, use_column_width=True, caption='Hay tantos idiomas diferentes...')
 
 # Agregar un espacio en blanco para centrar la imagen verticalmente
 st.write('')
