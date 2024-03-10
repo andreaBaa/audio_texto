@@ -16,18 +16,14 @@ from googletrans import Translator
 st.title("Traductor de voz")
 
 image = Image.open('gatos.jpeg')
-st.title("Traductor de voz")
 
-image = Image.open('gatos.jpeg')
+st.image(image)
 
-#Poner la imagen en el centro
-width, height = image.size
-new_width = int(width / 2)
-new_height = int(height / 2)
-image_resized = image.resize((new_width, new_height))
-st.image(image_resized, use_column_width='always')
-
-
+# Mostrar la imagen en el centro de la página
+st.markdown(
+    f'<div style="display: flex; justify-content: center;"><img src="data:image/jpeg;base64,{image}" alt="imagen"></div>',
+    unsafe_allow_html=True
+)
 
 
 #st.write(")
