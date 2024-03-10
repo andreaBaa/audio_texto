@@ -16,8 +16,18 @@ from googletrans import Translator
 st.title("Traductor de voz")
 
 image = Image.open('gatos.jpeg')
+st.title("Traductor de voz")
 
-st.image(image)
+image = Image.open('gatos.jpeg')
+
+#Poner la imagen en el centro
+width, height = image.size
+new_width = int(width / 2)
+new_height = int(height / 2)
+image_resized = image.resize((new_width, new_height))
+st.image(image_resized, use_column_width='always')
+
+
 
 
 #st.write(")
