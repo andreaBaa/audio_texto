@@ -24,8 +24,8 @@ st.image(image)
 
 stt_button = Button(label=" COMENZAR ", width=200)
 
-st.subheader("Toca el botón y di en voz alta lo que quieras que traduzca:")
-st.write("Apenas le des click, comienza a hablar")
+st.subheader("Toca el botón y di en voz alta lo que quieras que traduzca")
+st.write("Apenas le des click, comienza a hablar:")
 
 stt_button.js_on_event("button_click", CustomJS(code="""
     var recognition = new webkitSpeechRecognition();
@@ -158,11 +158,11 @@ if result:
         result, output_text = text_to_speech(input_language, output_language, text, tld)
         audio_file = open(f"temp/{result}.mp3", "rb")
         audio_bytes = audio_file.read()
-        st.markdown(f"## Tu audio:")
+        st.markdown(f"## Tu audio traducido:")
         st.audio(audio_bytes, format="audio/mp3", start_time=0)
     
         if display_output_text:
-            st.markdown(f"## Tu texto:")
+            st.markdown(f"## Tu texto traducido:")
             st.write(f" {output_text}")
     
     
