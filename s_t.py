@@ -22,9 +22,10 @@ st.image(image)
 
 #st.write(")
 
-stt_button = Button(label=" Inicio ", width=200)
+stt_button = Button(label=" COMENZAR ", width=200)
 
 st.subheader("Toca el botón y di en voz alta lo que quieras que traduzca:")
+st.write("Apenas le des click, comienza a hablar")
 
 stt_button.js_on_event("button_click", CustomJS(code="""
     var recognition = new webkitSpeechRecognition();
@@ -60,7 +61,7 @@ if result:
         os.mkdir("temp")
     except:
         pass
-    st.title("Texto a Audio")
+    st.title("Audio a texto")
     translator = Translator()
     
     text = str(result.get("GET_TEXT"))
