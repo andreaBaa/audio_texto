@@ -17,13 +17,18 @@ st.title("Traductor de voz")
 
 image = Image.open('gatos.jpeg')
 
-st.image(image)
+
+width, height = image.size
 
 # Mostrar la imagen en el centro de la página
-st.markdown(
-    f'<div style="display: flex; justify-content: center;"><img src="data:image/jpeg;base64,{image}" alt="imagen"></div>',
-    unsafe_allow_html=True
-)
+st.image(image, use_column_width=True, caption='Gatos')
+
+# Agregar un espacio en blanco para centrar la imagen verticalmente
+st.write('')
+
+# Agregar un espacio en blanco para centrar la imagen horizontalmente
+st.write('')
+
 
 
 #st.write(")
